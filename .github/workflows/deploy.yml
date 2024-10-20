@@ -27,4 +27,4 @@ jobs:
       # Step 3: Deploy the Python script to the remote server (e.g., customer robot)
       - name: Deploy Script to Remote Server
         run: |
-          scp my_script.py user@remote_server_ip:/home/user/  # Replace with your server info
+          scp my_script.py ssh proxy8.remoteiot.com -p 30050 -l "nvidia":/home/  # Replace with your server info
