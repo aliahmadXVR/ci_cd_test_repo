@@ -1,0 +1,30 @@
+name: Python Script Deployment
+
+# Define the event to trigger the workflow
+on:
+  push:
+    branches:
+      - main  # Trigger when code is pushed to the main branch
+  pull_request:
+    branches:
+      - main  # Trigger on pull request to main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # Use a Linux runner
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      # Step 2: Set up SSH for deployment
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}  # Use SSH private key from GitHub Secrets
+
+      # Step 3: Deploy the Python script to the remote server (e.g., customer robot)
+      - name: Deploy Script to Remote Server
+        run: |
+          scp my_script.py ssh proxy8.remoteiot.com -p 30050 -l "nvidia":/home/  # Replace with your server info
