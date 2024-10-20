@@ -4,10 +4,10 @@ name: Python Script Deployment
 on:
   push:
     branches:
-      - main  # Trigger when code is pushed to the main branch
+      - master  # Trigger when code is pushed to the main branch
   pull_request:
     branches:
-      - main  # Trigger on pull request to main branch
+      - master  # Trigger on pull request to main branch
 
 jobs:
   deploy:
