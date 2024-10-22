@@ -3,7 +3,7 @@ name: Deploy Python File via SSH
 on:
   push:
     branches:
-      - master  # Deploys when there's a push to the main branch
+      - main  # Deploys when there's a push to the main branch
 
 jobs:
   deploy:
@@ -18,9 +18,15 @@ jobs:
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-    - name: Deploy Python file to remote server
+    - name: Add remote server to known_hosts
       run: |
-        scp test_file_1.py nano1@india.remoteiot.com:30085:/home/nano1/ci_cd_incoming
+        ssh-keyscan -H india.remoteiot.com >> ~/.ssh/known_hosts
+        ssh-keyscan -p 30085 -H india.remoteiot.com >> ~/.ssh/known_hosts
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
+    - name: Deploy Python file to remote server
+      run: |
+        scp -P 30085 test_file_1.py nano1@india.remoteiot.com:/home/nano1/ci_cd_incoming
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
