@@ -24,4 +24,3 @@ jobs:
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
-# scp path_to_your_file.py nano1@10.21.22.1:/home/nano1/ci_cd_incoming
