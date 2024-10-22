@@ -3,7 +3,7 @@ name: Deploy Python File via SSH
 on:
   push:
     branches:
-      - master  # Deploys when there's a push to the main branch
+      - main  # Deploys when there's a push to the main branch
 
 jobs:
   deploy:
@@ -17,12 +17,6 @@ jobs:
       uses: webfactory/ssh-agent@v0.7.0
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-    - name: Add remote server to known_hosts
-      run: |
-        ssh-keyscan -p 30085 -H india.remoteiot.com >> ~/.ssh/known_hosts
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
     - name: Deploy Python file to remote server
       run: |
