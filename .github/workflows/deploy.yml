@@ -16,10 +16,10 @@ jobs:
     - name: Install SSH key
       uses: webfactory/ssh-agent@v0.7.0
       with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+        ssh-private-key: ${{ secrets.SSH_PUBLIC_KEY }}
 
     - name: Deploy Python file to remote server
       run: |
         scp -P 30085 test_file_1.py nano1@india.remoteiot.com:/home/nano1/ci_cd_incoming
       env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PUBLIC_KEY }}
