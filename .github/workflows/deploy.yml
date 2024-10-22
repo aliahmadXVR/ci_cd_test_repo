@@ -20,7 +20,7 @@ jobs:
 
     - name: Deploy Python file to remote server
       run: |
-        scp path_to_your_file.py nano1@india.remoteiot.com:30085:/home/nano1/ci_cd_incoming
+        scp test_file_1.py nano1@india.remoteiot.com:30085:/home/nano1/ci_cd_incoming
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
