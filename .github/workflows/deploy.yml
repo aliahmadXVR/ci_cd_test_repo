@@ -3,7 +3,7 @@ name: Deploy Python File via SSH
 on:
   push:
     branches:
-      - main  # Deploys when there's a push to the main branch
+      - master  # Deploys when there's a push to the main branch
 
 jobs:
   deploy:
