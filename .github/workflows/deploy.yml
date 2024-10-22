@@ -18,6 +18,12 @@ jobs:
       with:
         ssh-private-key: ${{ secrets.SSH_PUBLIC_KEY }}
 
+    - name: Add remote server to known_hosts
+      run: |
+        ssh-keyscan -H india.remoteiot.com:30085 >> ~/.ssh/known_hosts
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
     - name: Deploy Python file to remote server
       run: |
         scp -P 30085 test_file_1.py nano1@india.remoteiot.com:/home/nano1/ci_cd_incoming
