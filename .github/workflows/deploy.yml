@@ -20,7 +20,6 @@ jobs:
 
     - name: Add remote server to known_hosts
       run: |
-        ssh-keyscan -H india.remoteiot.com >> ~/.ssh/known_hosts
         ssh-keyscan -p 30085 -H india.remoteiot.com >> ~/.ssh/known_hosts
       env:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
